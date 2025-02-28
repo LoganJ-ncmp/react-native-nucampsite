@@ -1,4 +1,5 @@
-import { View, Platform } from "react-native";
+import { View, Platform, StyleSheet } from "react-native";
+import { Icon } from "react-native-elements";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
 import CampsiteInfoScreen from "./CampsiteInfoScreen";

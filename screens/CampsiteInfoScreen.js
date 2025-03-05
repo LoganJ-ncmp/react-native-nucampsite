@@ -105,7 +105,6 @@ const CampsiteInfoScreen = ({ route }) => {
           <View style={{ margin: 10 }}>
             <Button
               onPress={() => {
-                setShowModal(!showModal);
                 handleSubmit();
                 resetForm();
               }}

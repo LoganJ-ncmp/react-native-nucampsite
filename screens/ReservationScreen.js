@@ -38,14 +38,16 @@ const ReservationScreen = () => {
         {
           text: "cancel",
           onPress: () => {
-            console.log("Search Canceled"), resetForm();
+            console.log("Search Canceled");
+            resetForm();
           },
           style: "cancel",
         },
         {
           text: "ok",
           onPress: () => {
-            console.log("Search Started"), resetForm();
+            console.log("Search Started");
+            resetForm();
           },
         },
       ],
@@ -88,12 +90,13 @@ const ReservationScreen = () => {
           />
         </View>
         <View style={styles.formRow}>
-          <Text
-            onPress={() => setShowCalendar(!showCalender)}
+          <Text style={styles.formLabel}>Date:</Text>
+          <Button
+            onPress={() => setShowCalendar(!showCalendar)}
             title={date.toLocaleDateString("en-US")}
-            color="#5637D"
+            color="#5637DD"
             accessibilityLabel="Tap me to select a reservation date"
-          ></Text>
+          />
         </View>
         {showCalender && (
           <DateTimePicker

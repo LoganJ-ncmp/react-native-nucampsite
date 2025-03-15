@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Switch,
   Button,
-  Platform,
   Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
@@ -18,7 +17,7 @@ const ReservationScreen = () => {
   const [campers, setCampers] = useState(1);
   const [hikeIn, setHikeIn] = useState(false);
   const [date, setDate] = useState(new Date());
-  const [showCalender, setShowCalendar] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -27,25 +26,23 @@ const ReservationScreen = () => {
   };
 
   const handleReservation = () => {
-    console.log("Campers:", campers);
-    console.log("hikeIn:", hikeIn);
-    console.log("date:", date);
+    const message = `Number of Campers: ${campers}
+                            \nHike-In? ${hikeIn}
+                            \nDate: ${date.toLocaleDateString("en-US")}`;
     Alert.alert(
       "Begin Search?",
-      `Number of Campers:${campers}\n\nHike-In? ${hikeIn}\n\nDate: ${date.toLocaleDateString(
-        "en-US"
-      )}`,
+      message,
       [
         {
-          text: "cancel",
+          text: "Cancel",
           onPress: () => {
-            console.log("Search Canceled");
+            console.log("Reservation Search Canceled");
             resetForm();
           },
           style: "cancel",
         },
         {
-          text: "ok",
+          text: "OK",
           onPress: () => {
             presentLocalNotification(date.toLocaleDateString("en-US"));
             resetForm();
@@ -54,6 +51,9 @@ const ReservationScreen = () => {
       ],
       { cancelable: false }
     );
+    console.log("campers:", campers);
+    console.log("hikeIn:", hikeIn);
+    console.log("date:", date);
   };
 
   const resetForm = () => {
@@ -83,7 +83,6 @@ const ReservationScreen = () => {
     };
 
     let permissions = await Notifications.getPermissionsAsync();
-
     if (!permissions.granted) {
       permissions = await Notifications.requestPermissionsAsync();
     }
@@ -122,13 +121,13 @@ const ReservationScreen = () => {
         <View style={styles.formRow}>
           <Text style={styles.formLabel}>Date:</Text>
           <Button
-            onPress={() => setShowCalendar(!setShowCalendar)}
+            onPress={() => setShowCalendar(!showCalendar)}
             title={date.toLocaleDateString("en-US")}
             color="#5637DD"
             accessibilityLabel="Tap me to select a reservation date"
           />
         </View>
-        {showCalender && (
+        {showCalendar && (
           <DateTimePicker
             style={styles.formItem}
             value={date}

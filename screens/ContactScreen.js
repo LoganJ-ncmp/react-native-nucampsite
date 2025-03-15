@@ -13,8 +13,8 @@ const ContactScreen = () => {
   };
 
   return (
-    <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
-      <ScrollView>
+    <ScrollView>
+      <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
         <Card wrapperStyle={{ margin: 20 }}>
           <Card.Title>Contact Information</Card.Title>
           <Card.Divider />
@@ -37,8 +37,8 @@ const ContactScreen = () => {
             onPress={() => sendMail()}
           />
         </Card>
-      </ScrollView>
-    </Animatable.View>
+      </Animatable.View>
+    </ScrollView>
   );
 };
 

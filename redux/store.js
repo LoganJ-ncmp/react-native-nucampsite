@@ -16,7 +16,7 @@ import {
 } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const config = {
+const config = {
   key: "root",
   storage: AsyncStorage,
   debug: true,
